@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Yılımız Kutlu Olsun</title>
+    <link href="https://cdn.jsdelivr.net/npm/fullpage.js@3.1.2/dist/fullpage.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+
+        #fullpage {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        #hero {
+            background-color: #fff;
+        }
+
+        #hero img {
+            max-width: 300px;
+            max-height: 300px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            object-fit: cover;
+        }
+
+        #hero h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Memories Section */
+        #memories {
+            background-color: #f9f9f9;
+        }
+
+        #memories .gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        #memories .gallery img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Message Section */
+        #message {
+            background-color: #fff;
+        }
+
+        .message-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px 0;
+        }
+
+        .message-box textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+        }
+
+        .message-box button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* Music Player */
+        #music-section {
+            background-color: #f9f9f9;
+        }
+
+        #music-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        #music-controls button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hero img {
+                max-width: 250px;
+                max-height: 250px;
+            }
+            
+            #hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="fullpage">
+        <div class="section" id="hero">
+            <img src="/api/placeholder/300/300" alt="Bizim Fotoğrafımız">
+            <h1>5 Yılımız Kutlu Olsun</h1>
+            <p>Aşkımızın her anını birlikte geçirdiğimiz harika beş yıl...</p>
+        </div>
+
+        <div class="section" id="memories">
+            <div class="gallery">
+                <img src="/api/placeholder/600/400" alt="Anı 1">
+                <img src="/api/placeholder/600/400" alt="Anı 2">
+                <img src="/api/placeholder/600/400" alt="Anı 3">
+            </div>
+        </div>
+
+        <div class="section" id="message">
+            <div class="message-box">
+                <textarea id="loveMessage" placeholder="Sevgiline özel bir mesaj yaz..."></textarea>
+                <button onclick="saveMessage()">Mesajı Kaydet</button>
+            </div>
+        </div>
+
+        <div class="section" id="music-section">
+            <div id="music-controls">
+                <audio id="backgroundMusic" loop>
+                    <source src="https://cdnjs.cloudflare.com/ajax/libs/placeholdermusic/1.0/romantic.mp3" type="audio/mpeg">
+                </audio>
+                <button id="playPauseBtn">▶️ Müziği Çal</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullpage.js@3.1.2/dist/fullpage.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            new fullpage('#fullpage', {
+                autoScrolling: true,
+                scrollHorizontally: true,
+                touchSensitivity: 15,
+                scrollingSpeed: 700,
+                verticalCentered: true,
+                responsiveWidth: 768
+            });
+
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            const playPauseBtn = document.getElementById('playPauseBtn');
+
+            playPauseBtn.addEventListener('click', () => {
+                if (backgroundMusic.paused) {
+                    backgroundMusic.play();
+                    playPauseBtn.textContent = '⏸️ Müziği Durdur';
+                } else {
+                    backgroundMusic.pause();
+                    playPauseBtn.textContent = '▶️ Müziği Çal';
+                }
+            });
+        });
+
+        function saveMessage() {
+            const messageTextarea = document.getElementById('loveMessage');
+            const message = messageTextarea.value;
+            
+            if (message.trim() !== '') {
+                // Mesajı kaydetme işlevi eklenebilir
+                // Örneğin: localStorage'a kaydetme veya sunucuya gönderme
+                alert('Mesajınız kaydedildi! 💕');
+                messageTextarea.value = ''; // Textarea'yı temizle
+            } else {
+                alert('Lütfen bir mesaj yazın.');
+            }
+        }
+    </script>
+</body>
+</html>
